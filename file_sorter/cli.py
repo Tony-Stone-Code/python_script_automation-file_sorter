@@ -265,11 +265,8 @@ Examples:
                     print("Install it with: pip install watchdog")
                 return 1
             
-            try:
-                watch_mode = WatchMode(sorter, verbose)
-                watch_mode.start()
-            except KeyboardInterrupt:
-                return 0
+            watch_mode = WatchMode(sorter, verbose)
+            watch_mode.start()
             return 0
         
         # Perform file sorting

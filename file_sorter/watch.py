@@ -90,6 +90,21 @@ try:
 
 except ImportError:
     WATCHDOG_AVAILABLE = False
-    FileCreatedHandler = None
-    WatchMode = None
+    
+    # Provide stub classes with helpful error messages
+    class FileCreatedHandler:
+        """Stub handler that raises an error if watchdog is not installed"""
+        def __init__(self, *args, **kwargs):
+            raise ImportError(
+                "Watch mode requires 'watchdog' package. "
+                "Install it with: pip install watchdog"
+            )
+    
+    class WatchMode:
+        """Stub watch mode that raises an error if watchdog is not installed"""
+        def __init__(self, *args, **kwargs):
+            raise ImportError(
+                "Watch mode requires 'watchdog' package. "
+                "Install it with: pip install watchdog"
+            )
 
