@@ -1,1 +1,4 @@
 rich>=13.0.0
+
+# Optional dependencies
+# watchdog>=3.0.0  # For watch mode functionality

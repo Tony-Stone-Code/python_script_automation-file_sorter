@@ -22,6 +22,12 @@ except ImportError:
 from .core import FileSorter
 from .config import Config
 
+try:
+    from .watch import WatchMode
+    WATCH_AVAILABLE = True
+except ImportError:
+    WATCH_AVAILABLE = False
+
 
 class CLI:
     """Command-line interface handler"""
@@ -101,6 +107,9 @@ Examples:
   # Find duplicate files
   file-sorter --find-duplicates
   
+  # Watch directory and auto-sort new files
+  file-sorter --watch
+  
   # Use custom configuration
   file-sorter --config my_config.json
             """
@@ -134,6 +143,12 @@ Examples:
             choices=['skip', 'rename', 'replace'],
             default='rename',
             help='How to handle duplicate files (default: rename)'
+        )
+        
+        parser.add_argument(
+            '--watch',
+            action='store_true',
+            help='Watch directory and automatically sort new files (requires watchdog package)'
         )
         
         parser.add_argument(
@@ -237,6 +252,24 @@ Examples:
                 else:
                     print("No duplicate files found!")
             
+            return 0
+        
+        # Handle watch mode
+        if parsed_args.watch:
+            if not WATCH_AVAILABLE:
+                if RICH_AVAILABLE:
+                    self.console.print("[bold red]Error:[/bold red] Watch mode requires 'watchdog' package")
+                    self.console.print("[yellow]Install it with:[/yellow] pip install watchdog")
+                else:
+                    print("Error: Watch mode requires 'watchdog' package")
+                    print("Install it with: pip install watchdog")
+                return 1
+            
+            try:
+                watch_mode = WatchMode(sorter, verbose)
+                watch_mode.start()
+            except KeyboardInterrupt:
+                return 0
             return 0
         
         # Perform file sorting

@@ -113,9 +113,29 @@ file-sorter --duplicate-strategy skip
 # Handle duplicates by replacing
 file-sorter --duplicate-strategy replace
 
+# Watch mode - automatically sort new files
+file-sorter --watch
+
 # Quiet mode (suppress output)
 file-sorter --quiet
 ```
+
+### Watch Mode (Continuous Monitoring)
+
+Watch mode continuously monitors a directory and automatically sorts new files as they appear:
+
+```bash
+# Install with watch support
+pip install -e ".[watch]"
+
+# Start watching Downloads folder
+file-sorter --watch
+
+# Watch a specific directory
+file-sorter --source /path/to/directory --watch
+```
+
+Press `Ctrl+C` to stop watching.
 
 ### Command-Line Options
 
@@ -126,6 +146,7 @@ file-sorter --quiet
 | `--dry-run` | Preview what would be done without moving files |
 | `--organize-by-date` | Organize files by modification date within categories |
 | `--duplicate-strategy {skip,rename,replace}` | How to handle duplicate files (default: rename) |
+| `--watch` | Watch directory and automatically sort new files (requires watchdog) |
 | `--undo COUNT` | Undo last COUNT file operations |
 | `--stats` | Show statistics about files in source directory |
 | `--find-duplicates` | Find and report duplicate files |
@@ -196,10 +217,13 @@ file-sorter
 ### Running Tests
 
 ```bash
-# Install development dependencies
-pip install -e ".[dev]"
+# Run tests with unittest (no additional dependencies needed)
+python -m unittest discover -s tests -v
 
-# Run tests
+# Or install pytest for more features
+pip install pytest pytest-cov
+
+# Run tests with pytest
 pytest
 
 # Run tests with coverage

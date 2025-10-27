@@ -30,6 +30,15 @@ setup(
     install_requires=[
         "rich>=13.0.0",
     ],
+    extras_require={
+        "watch": ["watchdog>=3.0.0"],
+        "dev": [
+            "pytest>=7.0.0",
+            "pytest-cov>=3.0.0",
+            "black>=22.0.0",
+            "flake8>=4.0.0",
+        ],
+    },
     entry_points={
         "console_scripts": [
             "file-sorter=file_sorter.cli:main",
