@@ -1,0 +1,14 @@
+{
+  "categories": {
+    "Videos": [".mp4", ".mkv", ".avi", ".mov", ".wmv", ".flv", ".webm"],
+    "Pictures": [".jpg", ".jpeg", ".png", ".gif", ".bmp", ".svg", ".ico", ".tiff", ".webp"],
+    "Music": [".mp3", ".wav", ".flac", ".aac", ".ogg", ".m4a", ".wma"],
+    "Documents": [".pdf", ".docx", ".txt", ".pptx", ".xlsx", ".doc", ".xls", ".ppt", ".odt", ".rtf"],
+    "Archives": [".zip", ".rar", ".7z", ".tar", ".gz", ".bz2", ".xz"],
+    "Code": [".py", ".js", ".java", ".cpp", ".c", ".h", ".cs", ".php", ".rb", ".go", ".rs", ".html", ".css"],
+    "Executables": [".exe", ".msi", ".app", ".deb", ".rpm", ".dmg"],
+    "Spreadsheets": [".csv", ".xlsx", ".xls", ".ods"],
+    "Ebooks": [".epub", ".mobi", ".azw", ".azw3"],
+    "3D Models": [".obj", ".fbx", ".stl", ".blend", ".3ds"]
+  }
+}
